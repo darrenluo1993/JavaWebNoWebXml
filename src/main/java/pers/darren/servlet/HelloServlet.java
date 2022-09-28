@@ -3,6 +3,7 @@ package pers.darren.servlet;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 
+import javax.servlet.annotation.WebInitParam;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -10,7 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 
-@WebServlet(name = "HelloServlet", urlPatterns = "/hello", loadOnStartup = 1)
+@WebServlet(name = "HelloServlet", urlPatterns = "/hello", loadOnStartup = 1, initParams = {@WebInitParam(name = "role", value = "root"), @WebInitParam(name = "privilege", value = "all")})
 public class HelloServlet extends HttpServlet {
 
     @Override
@@ -22,6 +23,7 @@ public class HelloServlet extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException {
         System.out.println(this.getClass().getName() + ">>>当前服务器名称:" + req.getServletContext().getAttribute("ServerName"));
 
+        // 获取请求参数中的用户名
         String userName = req.getParameter("userName");
         if (userName == null || userName.isBlank()) {
             String contentType = req.getContentType();
@@ -33,7 +35,15 @@ public class HelloServlet extends HttpServlet {
             }
         }
         req.getSession().setAttribute("UserName", userName);
+        // 构建响应数据-用户信息
+        JsonObject json = new JsonObject();
+        json.addProperty("userName", userName);
+        json.addProperty("role", super.getInitParameter("role"));
+        json.addProperty("privilege", super.getInitParameter("privilege"));
+        req.getSession().setAttribute("UserInfo", json.toString());
 
-        resp.getWriter().printf("{\"Hello\":\"%s\"}", userName);
+        // 将响应数据写回客户端
+        resp.getWriter().print(json);
+        // resp.getOutputStream().print(json.toString());
     }
 }

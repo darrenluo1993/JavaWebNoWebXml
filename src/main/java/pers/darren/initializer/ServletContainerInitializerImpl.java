@@ -1,13 +1,14 @@
 package pers.darren.initializer;
 
+import oshi.SystemInfo;
+import oshi.software.os.OperatingSystem;
+
 import javax.servlet.ServletContainerInitializer;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.HandlesTypes;
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Set;
+import java.text.SimpleDateFormat;
+import java.util.*;
 
 @HandlesTypes(ApplicationInitializer.class)
 public class ServletContainerInitializerImpl implements ServletContainerInitializer {
@@ -18,6 +19,11 @@ public class ServletContainerInitializerImpl implements ServletContainerInitiali
         System.out.println(initializerSet == null || initializerSet.isEmpty());
         // Session超时时间设置，1分钟
         ctx.setSessionTimeout(1);
+        // 设置ServletContext初始化参数
+        OperatingSystem operatingSystem = new SystemInfo().getOperatingSystem();
+        ctx.setInitParameter("osName", operatingSystem.getFamily());
+        ctx.setInitParameter("osVersion", operatingSystem.getVersionInfo().getVersion());
+        ctx.setInitParameter("osUptime", new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date(operatingSystem.getSystemUptime())));
         // ApplicationInitializer实例化以及调用
         if (initializerSet != null && !initializerSet.isEmpty()) {
             List<ApplicationInitializer> initializerList = new ArrayList<>(initializerSet.size());

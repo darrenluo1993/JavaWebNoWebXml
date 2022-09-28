@@ -1,5 +1,6 @@
 package pers.darren.listener;
 
+import javax.servlet.ServletContext;
 import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
 import javax.servlet.annotation.WebListener;
@@ -9,13 +10,21 @@ public class CommonServletContextListener implements ServletContextListener {
 
     @Override
     public void contextInitialized(ServletContextEvent sce) {
-        System.out.println("创建ServletContext，设置ServletContext属性-服务器名称");
-        sce.getServletContext().setAttribute("ServerName", "JavaWebNoWebXml");
+        ServletContext context = sce.getServletContext();
+        System.out.println(">>>>>>>>>>ServletContext初始化参数<<<<<<<<<<");
+        System.out.println("系统名称:" + context.getInitParameter("osName"));
+        System.out.println("系统版本:" + context.getInitParameter("osVersion"));
+        System.out.println("启动时间:" + context.getInitParameter("osUptime"));
+        System.out.println(">>>>>>>>>>ServletContext初始化参数<<<<<<<<<<");
+
+        System.out.println("ServletContext已初始化，设置ServletContext属性-服务器名称");
+        context.setAttribute("ServerName", "JavaWebNoWebXml");
     }
 
     @Override
     public void contextDestroyed(ServletContextEvent sce) {
-        System.out.println("销毁ServletContext，移除ServletContext属性-服务器名称");
+        System.out.println("ServletContext即将销毁，移除ServletContext属性-服务器名称");
         sce.getServletContext().removeAttribute("ServerName");
+        System.out.println("ServletContext已销毁");
     }
 }
