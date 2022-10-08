@@ -13,6 +13,8 @@
           <element id="library" level="project" name="Maven: net.java.dev.jna:jna-platform:5.12.1" />
           <element id="library" level="project" name="Maven: net.java.dev.jna:jna:5.12.1" />
           <element id="library" level="project" name="Maven: org.slf4j:slf4j-api:2.0.2" />
+          <element id="library" level="project" name="Maven: ch.qos.logback:logback-classic:1.4.3" />
+          <element id="library" level="project" name="Maven: ch.qos.logback:logback-core:1.4.3" />
         </element>
       </element>
     </root>
