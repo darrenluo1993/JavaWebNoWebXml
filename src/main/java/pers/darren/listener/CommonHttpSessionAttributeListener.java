@@ -1,8 +1,8 @@
 package pers.darren.listener;
 
-import javax.servlet.annotation.WebListener;
-import javax.servlet.http.HttpSessionAttributeListener;
-import javax.servlet.http.HttpSessionBindingEvent;
+import jakarta.servlet.annotation.WebListener;
+import jakarta.servlet.http.HttpSessionAttributeListener;
+import jakarta.servlet.http.HttpSessionBindingEvent;
 
 @WebListener
 public class CommonHttpSessionAttributeListener implements HttpSessionAttributeListener {

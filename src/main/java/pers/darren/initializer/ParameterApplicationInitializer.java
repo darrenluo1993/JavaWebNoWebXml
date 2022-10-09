@@ -1,6 +1,6 @@
 package pers.darren.initializer;
 
-import javax.servlet.ServletContext;
+import jakarta.servlet.ServletContext;
 
 public class ParameterApplicationInitializer implements ApplicationInitializer {
 

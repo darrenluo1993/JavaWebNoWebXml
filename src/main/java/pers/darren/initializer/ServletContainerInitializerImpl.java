@@ -1,12 +1,12 @@
 package pers.darren.initializer;
 
+import jakarta.servlet.ServletContainerInitializer;
+import jakarta.servlet.ServletContext;
+import jakarta.servlet.ServletException;
+import jakarta.servlet.annotation.HandlesTypes;
 import oshi.SystemInfo;
 import oshi.software.os.OperatingSystem;
 
-import javax.servlet.ServletContainerInitializer;
-import javax.servlet.ServletContext;
-import javax.servlet.ServletException;
-import javax.servlet.annotation.HandlesTypes;
 import java.text.SimpleDateFormat;
 import java.util.*;
 

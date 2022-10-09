@@ -1,8 +1,8 @@
 package pers.darren.listener;
 
-import javax.servlet.ServletRequestAttributeEvent;
-import javax.servlet.ServletRequestAttributeListener;
-import javax.servlet.annotation.WebListener;
+import jakarta.servlet.ServletRequestAttributeEvent;
+import jakarta.servlet.ServletRequestAttributeListener;
+import jakarta.servlet.annotation.WebListener;
 
 @WebListener
 public class CommonServletRequestAttributeListener implements ServletRequestAttributeListener {

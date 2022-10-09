@@ -1,12 +1,13 @@
 package pers.darren.filter;
 
-import javax.servlet.FilterChain;
-import javax.servlet.ServletException;
-import javax.servlet.ServletRequest;
-import javax.servlet.ServletResponse;
-import javax.servlet.annotation.WebFilter;
-import javax.servlet.annotation.WebInitParam;
-import javax.servlet.http.HttpFilter;
+import jakarta.servlet.FilterChain;
+import jakarta.servlet.ServletException;
+import jakarta.servlet.ServletRequest;
+import jakarta.servlet.ServletResponse;
+import jakarta.servlet.annotation.WebFilter;
+import jakarta.servlet.annotation.WebInitParam;
+import jakarta.servlet.http.HttpFilter;
+
 import java.io.IOException;
 
 @WebFilter(filterName = "CharacterEncodingFilter", urlPatterns = "/*", initParams = {@WebInitParam(name = "charset", value = "UTF8"), @WebInitParam(name = "contentType", value = "application/json")}, description = "HTTP请求与响应内容字符编码设置，HTTP响应内容类型设置")
